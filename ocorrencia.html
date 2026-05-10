@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CIVIAS - Registrar Ocorrência</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <style>
     body {
       background-color: var(--bg-primary);
@@ -98,25 +99,11 @@
       background-color: var(--bg-card-alt);
     }
 
-    .oc-map-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      filter: brightness(0.75) saturate(0.6) hue-rotate(180deg);
-    }
-
-    .oc-map-pin {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -100%);
-      width: 28px;
-      height: 28px;
-      background-color: #e53e3e;
-      border-radius: 50% 50% 50% 0;
-      transform: translate(-50%, -80%) rotate(-45deg);
-      pointer-events: none;
-    }
+    #map {
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+}
 
     .oc-address {
       margin-top: 10px;
@@ -334,16 +321,11 @@
       <div>
         <div class="oc-section-title">Localização</div>
         <div class="oc-map-wrapper">
-          <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-40.3050%2C-20.3350%2C-40.2950%2C-20.3250&layer=mapnik"
-            allowfullscreen
-            loading="lazy"
-            title="Mapa localização"
-          ></iframe>
-          <div class="oc-map-pin"></div>
+         <div id="map"></div>
         </div>
-        <div class="oc-address">Rua de Exemplo, 123 - Vila Velha</div>
-      </div>
+         <div class="oc-address" id="ocAddress">
+    Selecione um ponto no mapa
+    </div>
 
       <!-- Upload -->
       <div>
@@ -475,6 +457,7 @@
     </a>
   </nav>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="assets/js/ocorrencia.js"></script>
 </body>
 </html>
