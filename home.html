@@ -121,62 +121,7 @@
     }
 
     /* Pins sobre o mapa */
-    .map-pins {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .map-pin {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .map-pin .pin-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      flex-shrink: 0;
-    }
-
-    .map-pin.red .pin-dot   { background-color: #e53e3e; }
-    .map-pin.green .pin-dot { background-color: var(--green-main); }
-
-    .map-pin .pin-tooltip {
-      background: white;
-      border-radius: var(--border-radius-md);
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .pin-tooltip .dot-small {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .pin-tooltip .dot-small.red   { background-color: #e53e3e; box-shadow: 0 0 0 3px rgba(229,62,62,0.2); }
-    .pin-tooltip .dot-small.green { background-color: var(--green-main); box-shadow: 0 0 0 3px rgba(31,223,75,0.2); }
-
-    .pin-tooltip .pin-info span {
-      display: block;
-      font-size: 11px;
-      color: #888;
-    }
-
-    .pin-tooltip .pin-info strong {
-      font-size: 13px;
-      color: #111;
-      font-weight: 700;
-    }
-
+    
     /* Stats */
     .stats-section {
       margin: 20px 20px 0;
