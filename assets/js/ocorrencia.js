@@ -1,5 +1,6 @@
 // ocorrencia.js — Lógica da tela de Registro de Ocorrência
 import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -115,29 +116,35 @@ inputFotos.addEventListener('change', () => {
 });
 
 // --- Botão enviar ---
-document.getElementById('btnEnviar').addEventListener('click', () => {
-  const descricao  = document.getElementById('ocDescricao').value.trim();
-  const sevSel     = document.querySelector('.oc-sev-btn.selected');
-  const veicSel    = document.querySelectorAll('.oc-vehicle-btn.selected');
+document.getElementById('btnEnviar').addEventListener('click', async () => {
 
-  if (!descricao) {
-    alert('Descreva o problema da via antes de enviar.');
+  const descricao = document.getElementById('ocDescricao').value.trim();
+  const sevSel = document.querySelector('.oc-sev-btn.selected');
+  const veicSel = document.querySelectorAll('.oc-vehicle-btn.selected');
+
+  if (!descricao || !sevSel || veicSel.length === 0) {
+    alert("Preencha tudo antes de enviar");
     return;
   }
 
-  if (!sevSel) {
-    alert('Selecione a severidade da ocorrência.');
-    return;
-  }
+  try {
+    await addDoc(collection(db, "ocorrencias"), {
+      descricao,
+      severidade: sevSel.dataset.sev,
+      veiculos: Array.from(veicSel).map(v => v.dataset.vehicle),
+      endereco: document.getElementById("ocAddress").textContent,
+      latitude: -20.3155,
+      longitude: -40.3128,
+      data: new Date().toISOString()
+    });
 
-  if (veicSel.length === 0) {
-    alert('Selecione pelo menos um tipo de veículo frequente.');
-    return;
-  }
+    alert("🔥 Salvo no Firebase!");
+    window.location.href = "home.html";
 
-  // Feedback de sucesso e redireciona para home
-  alert('✅ Ocorrência registrada com sucesso!');
-  window.location.href = 'home.html';
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao salvar ocorrência");
+  }
 });
 
 });
