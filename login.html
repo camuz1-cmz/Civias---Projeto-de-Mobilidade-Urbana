@@ -6,10 +6,10 @@
   <title>CIVIAS - Login</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
-  body {
-   background-color: var(--bg-primary);
-  min-height: 100vh;
-  }
+    body {
+      background-color: var(--bg-primary);
+      min-height: 100vh;
+    }
 
     .login-wrapper {
       width: 100%;
@@ -19,8 +19,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 48px 28px;
-      gap: 32px;
+      /* Responsivo: padding menor em telas pequenas via clamp */
+      padding: clamp(32px, 6vh, 48px) clamp(18px, 6vw, 28px);
+      gap: clamp(24px, 4vh, 32px);
+      margin: 0 auto;
     }
 
     /* Logo */
@@ -30,15 +32,16 @@
     }
 
     .login-logo span {
-      font-size: 42px;
+      /* clamp(mínimo, preferido, máximo) — escala suave */
+      font-size: clamp(32px, 8vw, 42px);
       font-weight: 800;
       color: var(--text-primary);
       letter-spacing: -1px;
     }
 
     .login-logo svg {
-      width: 34px;
-      height: 42px;
+      width: clamp(26px, 6vw, 34px);
+      height: clamp(32px, 7vw, 42px);
     }
 
     /* Título */
@@ -47,7 +50,7 @@
     }
 
     .login-title h1 {
-      font-size: 26px;
+      font-size: clamp(20px, 5vw, 26px);
       font-weight: 800;
       color: var(--text-primary);
       line-height: 1.2;
