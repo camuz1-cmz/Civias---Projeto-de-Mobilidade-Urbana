@@ -20,19 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
     userNameElement.textContent = userName;
   }
 
-  // ==============================
+   // ==============================
   // ELEMENTOS DO MAPA
   // ==============================
   const mapElement = document.getElementById('map');
-  const addressElement = document.getElementById('ocAddress') || { textContent: "" };
+  const addressElement = document.getElementById('ocAddress');
 
   let marker = null;
   let map = null;
 
-  // ==============================
-  // INICIALIZA MAPA
-  // ==============================
-  if (mapElement) {
+  if (mapElement && typeof L !== "undefined") {
 
     map = L.map('map').setView([-20.3155, -40.3128], 15);
 
@@ -41,15 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
       attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    // Marker inicial
     marker = L.marker([-20.3155, -40.3128], {
       draggable: true
     }).addTo(map);
 
-    // ==============================
-    // FUNÇÃO DE ENDEREÇO (Reverse Geocoding)
-    // ==============================
+    // 🔥 IMPORTANTE: força render correto
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 200);
+
     async function atualizarEndereco(lat, lng) {
+
+      if (!addressElement) return;
 
       addressElement.textContent = 'Buscando endereço...';
 
@@ -70,27 +70,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // endereço inicial
     atualizarEndereco(-20.3155, -40.3128);
 
-    // clique no mapa
     map.on('click', (e) => {
       const { lat, lng } = e.latlng;
-
-      if (marker) {
-        marker.setLatLng([lat, lng]);
-      }
-
+      marker.setLatLng([lat, lng]);
       atualizarEndereco(lat, lng);
     });
 
-    // arrastar marcador
-    if (marker) {
-      marker.on('dragend', () => {
-        const pos = marker.getLatLng();
-        atualizarEndereco(pos.lat, pos.lng);
-      });
-    }
+    marker.on('dragend', () => {
+      const pos = marker.getLatLng();
+      atualizarEndereco(pos.lat, pos.lng);
+    });
   }
 
 
