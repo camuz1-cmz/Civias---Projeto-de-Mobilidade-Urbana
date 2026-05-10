@@ -86,9 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   
-// Nome do usuário
-const userName = sessionStorage.getItem('civias_user') || 'User';
-document.getElementById('userName').textContent = userName;
+
 
 // --- Seleção de veículos ---
 const vehicleBtns = document.querySelectorAll('.oc-vehicle-btn');
