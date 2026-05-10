@@ -1,12 +1,17 @@
 // home.js — Lógica da Home
 
-// Exibe o nome do usuário salvo na sessão
-const userName = sessionStorage.getItem('civias_user') || 'User';
-document.getElementById('userName').textContent = userName;
-
-// Leaflat - MAPA
 document.addEventListener("DOMContentLoaded", () => {
 
+  // Nome do usuário
+  const userName = sessionStorage.getItem('civias_user') || 'User';
+
+  const userNameElement = document.getElementById('userName');
+
+  if (userNameElement) {
+    userNameElement.textContent = userName;
+  }
+
+  // MAPA
   const map = L.map('map').setView([-20.3155, -40.3128], 13);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
