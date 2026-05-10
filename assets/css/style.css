@@ -314,3 +314,198 @@ body {
     font-size: 10px;
   }
 }
+
+
+/* ============================================================
+   Adicionando responsividade global ao style.css
+   ============================================================ */
+
+/* =============================
+   CONTAINER - Telas médias e grandes
+   ============================= */
+@media (min-width: 480px) and (max-width: 767px) {
+  .app-container {
+    max-width: 100%;
+  }
+
+  .navbar {
+    max-width: calc(100% - 32px);
+  }
+}
+
+/* =============================
+   STATS GRID - Telas muito pequenas (< 360px)
+   ============================= */
+@media (max-width: 360px) {
+  .stats-grid {
+    gap: 6px;
+  }
+
+  .stat-card {
+    padding: 10px 8px;
+  }
+
+  .stat-card .stat-number {
+    font-size: 26px;
+  }
+
+  .stat-card .stat-label {
+    font-size: 10px;
+  }
+}
+
+/* =============================
+   WRAPPERS DE LOGIN / CADASTRO
+   (páginas sem navbar, centralizadas)
+   ============================= */
+
+/* Telas muito pequenas: reduz padding para não sufocar */
+@media (max-width: 360px) {
+  .login-wrapper,
+  .cadastro-wrapper {
+    padding: 32px 18px;
+    gap: 24px;
+  }
+
+  .login-logo span,
+  .cadastro-logo span {
+    font-size: 34px;
+  }
+
+  .login-logo svg,
+  .cadastro-logo svg {
+    width: 27px;
+    height: 34px;
+  }
+
+  .login-title h1,
+  .cadastro-title h1 {
+    font-size: 22px;
+  }
+}
+
+/* Telas médias (tablets): centraliza e limita largura */
+@media (min-width: 600px) {
+  .login-wrapper,
+  .cadastro-wrapper {
+    margin: 0 auto;
+    max-width: 430px;
+  }
+}
+
+/* =============================
+   ONBOARDING
+   ============================= */
+
+/* Telas muito pequenas */
+@media (max-width: 360px) {
+  .onboarding-wrapper {
+    padding: 32px 16px 28px;
+  }
+
+  .ob-logo span {
+    font-size: 22px;
+  }
+
+  .ob-logo svg {
+    width: 18px;
+    height: 22px;
+  }
+
+  .ob-image-wrapper {
+    max-width: 260px;
+  }
+
+  .ob-slide-text {
+    font-size: 18px;
+  }
+
+  .btn-pular {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+}
+
+/* Telas médias (tablets) */
+@media (min-width: 600px) {
+  .onboarding-wrapper {
+    margin: 0 auto;
+    max-width: 430px;
+  }
+
+  .ob-image-wrapper {
+    max-width: 360px;
+  }
+
+  .ob-slide-text {
+    font-size: 24px;
+  }
+}
+
+/* =============================
+   HOME - Header, card, mapa
+   ============================= */
+
+/* Telas muito pequenas */
+@media (max-width: 360px) {
+  .home-header {
+    padding: 16px 14px 0;
+  }
+
+  .header-logo .logo {
+    height: 24px;
+  }
+
+  .header-user .greet {
+    font-size: 11px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-registrar {
+    margin: 14px 14px 0;
+    padding: 16px;
+  }
+
+  .card-registrar h2 {
+    font-size: 18px;
+  }
+
+  .card-registrar p {
+    font-size: 13px;
+  }
+
+  .map-section {
+    margin: 14px 14px 0;
+    height: 220px;
+  }
+
+  .stats-section {
+    margin: 14px 14px 0;
+  }
+}
+
+/* Telas médias */
+@media (min-width: 600px) {
+  .map-section {
+    height: 320px;
+  }
+}
+
+/* =============================
+   INPUTS - Garantia em telas pequenas
+   ============================= */
+@media (max-width: 360px) {
+  .input-row input {
+    font-size: 14px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    padding: 14px;
+    font-size: 14px;
+  }
+}
