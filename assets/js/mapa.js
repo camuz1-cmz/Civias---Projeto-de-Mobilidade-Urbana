@@ -8,7 +8,7 @@ console.log('Mapa do Bairro carregado.');
 import { db } from "./firebase.js";
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
  const map = L.map('map').setView([-20.3155, -40.3128], 15);
 
