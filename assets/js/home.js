@@ -14,9 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // MAPA
   const map = L.map('map').setView([-20.3155, -40.3128], 13);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
-  }).addTo(map);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap'
+}).addTo(map);
 
   L.marker([-20.3155, -40.3128])
     .addTo(map)
