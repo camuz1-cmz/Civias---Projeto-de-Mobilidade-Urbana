@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const addressElement = document.getElementById('ocAddress');
 
 let map, marker;
+let latSelecionada = -20.3155;
+let lngSelecionado = -40.3128;
 
 if (mapElement) {
 
@@ -64,16 +66,22 @@ if (mapElement) {
   atualizarEndereco(-20.3155, -40.3128);
 
   map.on('click', (e) => {
-    marker.setLatLng(e.latlng);
-    atualizarEndereco(e.latlng.lat, e.latlng.lng);
-  });
+  marker.setLatLng(e.latlng);
 
-  marker.on('dragend', () => {
-    const pos = marker.getLatLng();
-    atualizarEndereco(pos.lat, pos.lng);
-  });
-}
-  
+  latSelecionada = e.latlng.lat;
+  lngSelecionado = e.latlng.lng;
+
+  atualizarEndereco(latSelecionada, lngSelecionado);
+});
+
+ marker.on('dragend', () => {
+  const pos = marker.getLatLng();
+
+  latSelecionada = pos.lat;
+  lngSelecionado = pos.lng;
+
+  atualizarEndereco(pos.lat, pos.lng);
+});
 
 // --- Seleção de veículos ---
 const vehicleBtns = document.querySelectorAll('.oc-vehicle-btn');
@@ -118,19 +126,36 @@ inputFotos.addEventListener('change', () => {
 // --- Botão enviar ---
 document.getElementById('btnEnviar').addEventListener('click', async () => {
 
+  const descricao = document.getElementById('ocDescricao').value.trim();
+  const sevSel = document.querySelector('.oc-sev-btn.selected');
+  const veicSel = document.querySelectorAll('.oc-vehicle-btn.selected');
+
+  if (!descricao || !sevSel || veicSel.length === 0) {
+    alert("Preencha tudo antes de enviar");
+    return;
+  }
+
   try {
     await addDoc(collection(db, "ocorrencias"), {
-      teste: "funcionando",
+      descricao,
+      severidade: sevSel.dataset.sev,
+      veiculos: Array.from(veicSel).map(v => v.dataset.vehicle),
+
+      endereco: document.getElementById("ocAddress").textContent,
+
+      latitude: latSelecionada,
+      longitude: lngSelecionado,
+
       data: new Date().toISOString()
     });
 
-    alert("Salvou no Firebase!");
+    alert("Salvo no Firebase!");
+    window.location.href = "home.html";
 
   } catch (err) {
     console.error(err);
     alert("Erro ao salvar");
   }
-
 });
 
 });
