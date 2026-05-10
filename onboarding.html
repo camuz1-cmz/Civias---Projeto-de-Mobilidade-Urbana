@@ -20,7 +20,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 48px 24px 40px;
+      /* Responsivo: padding escala com clamp */
+      padding: clamp(32px, 6vh, 48px) clamp(16px, 5vw, 24px) clamp(28px, 5vh, 40px);
       position: relative;
     }
 
@@ -32,14 +33,14 @@
     }
 
     .ob-logo span {
-      font-size: 28px;
+      font-size: clamp(22px, 5vw, 28px);
       font-weight: 800;
       color: var(--text-primary);
     }
 
     .ob-logo svg {
-      width: 22px;
-      height: 28px;
+      width: clamp(17px, 4vw, 22px);
+      height: clamp(22px, 5vw, 28px);
     }
 
     /* Carrossel */
@@ -50,7 +51,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: clamp(16px, 3vh, 28px);
     }
 
     .ob-slides-track {
@@ -64,12 +65,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: clamp(12px, 2vh, 20px);
     }
 
     .ob-image-wrapper {
       width: 100%;
-      max-width: 320px;
+      /* Escala entre 240px (muito pequeno) e 320px */
+      max-width: clamp(240px, 75vw, 320px);
       border-radius: var(--border-radius-xl);
       overflow: hidden;
       aspect-ratio: 4/3;
@@ -83,7 +85,7 @@
     }
 
     .ob-slide-text {
-      font-size: 22px;
+      font-size: clamp(18px, 4.5vw, 22px);
       font-weight: 800;
       text-align: center;
       color: var(--text-primary);
@@ -121,11 +123,11 @@
     .btn-pular {
       background: linear-gradient(135deg, var(--green-main), var(--green-dark));
       color: #000;
-      font-size: 16px;
+      font-size: clamp(14px, 3.5vw, 16px);
       font-weight: 700;
       border: none;
       border-radius: var(--border-radius-lg);
-      padding: 14px 36px;
+      padding: clamp(12px, 2vh, 14px) clamp(28px, 7vw, 36px);
       cursor: pointer;
       transition: opacity 0.2s, transform 0.1s;
     }
