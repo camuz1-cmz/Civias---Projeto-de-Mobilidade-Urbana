@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 32px 20px 0;
+      padding: clamp(20px, 4vh, 32px) clamp(14px, 4vw, 20px) 0;
       gap: 4px;
     }
 
@@ -25,19 +25,19 @@
     }
 
     .perfil-logo span {
-      font-size: 28px;
+      font-size: clamp(22px, 5vw, 28px);
       font-weight: 800;
       color: var(--text-primary);
       letter-spacing: -0.5px;
     }
 
     .perfil-logo svg {
-      width: 22px;
-      height: 28px;
+      width: clamp(17px, 4vw, 22px);
+      height: clamp(22px, 5vw, 28px);
     }
 
     .perfil-header h1 {
-      font-size: 26px;
+      font-size: clamp(20px, 5vw, 26px);
       font-weight: 800;
       color: var(--text-primary);
       margin-top: 16px;
@@ -49,20 +49,20 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 24px 20px 0;
+      padding: clamp(16px, 3vh, 24px) clamp(14px, 4vw, 20px) 0;
       gap: 10px;
     }
 
     .perfil-avatar {
-      width: 100px;
-      height: 100px;
+      width: clamp(80px, 20vw, 100px);
+      height: clamp(80px, 20vw, 100px);
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid var(--green-main);
     }
 
     .perfil-name {
-      font-size: 24px;
+      font-size: clamp(20px, 5vw, 24px);
       font-weight: 800;
       color: var(--text-primary);
       text-align: center;
@@ -76,16 +76,16 @@
 
     /* Stats do perfil */
     .perfil-stats {
-      padding: 20px 20px 0;
+      padding: clamp(14px, 3vh, 20px) clamp(14px, 4vw, 20px) 0;
     }
 
     /* Minhas ocorrências */
     .ocorrencias-section {
-      padding: 20px 20px 0;
+      padding: clamp(14px, 3vh, 20px) clamp(14px, 4vw, 20px) 0;
     }
 
     .ocorrencias-section h2 {
-      font-size: 22px;
+      font-size: clamp(18px, 5vw, 22px);
       font-weight: 800;
       color: var(--text-primary);
       margin-bottom: 14px;
@@ -103,8 +103,8 @@
     }
 
     .oc-item-icon {
-      width: 48px;
-      height: 48px;
+      width: clamp(40px, 10vw, 48px);
+      height: clamp(40px, 10vw, 48px);
       border-radius: 10px;
       overflow: hidden;
       flex-shrink: 0;
@@ -133,7 +133,7 @@
     }
 
     .oc-item-name {
-      font-size: 15px;
+      font-size: clamp(13px, 3.5vw, 15px);
       font-weight: 700;
       color: var(--text-primary);
       white-space: nowrap;
