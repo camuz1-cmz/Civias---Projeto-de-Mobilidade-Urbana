@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIVIAS - Meu Perfil</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      background-color: var(--bg-primary);
+    }
+
+    /* Header */
+    .perfil-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 0;
+      gap: 4px;
+    }
+
+    .perfil-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .perfil-logo span {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .perfil-logo svg {
+      width: 22px;
+      height: 28px;
+    }
+
+    .perfil-header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 16px;
+      align-self: flex-start;
+    }
+
+    /* Avatar e info */
+    .perfil-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 20px 0;
+      gap: 10px;
+    }
+
+    .perfil-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--green-main);
+    }
+
+    .perfil-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-align: center;
+    }
+
+    .perfil-city {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    /* Stats do perfil */
+    .perfil-stats {
+      padding: 20px 20px 0;
+    }
+
+    /* Minhas ocorrências */
+    .ocorrencias-section {
+      padding: 20px 20px 0;
+    }
+
+    .ocorrencias-section h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+
+    /* Card de ocorrência */
+    .oc-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background-color: var(--bg-card);
+      border-radius: var(--border-radius-md);
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .oc-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: var(--bg-card-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .oc-item-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .oc-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .oc-item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .oc-item-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .oc-item-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .oc-item-badge.resolvida {
+      background-color: rgba(31, 223, 75, 0.15);
+      color: var(--green-main);
+      border: 1px solid rgba(31, 223, 75, 0.3);
+    }
+
+    .oc-item-badge.analise {
+      background-color: rgba(217, 119, 6, 0.15);
+      color: var(--orange);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+    }
+
+    .oc-item-badge.critica {
+      background-color: rgba(229, 62, 62, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(229, 62, 62, 0.3);
+    }
+
+    .oc-item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .oc-item-bairro {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .oc-item-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .bottom-space {
+      height: calc(var(--navbar-height) + 32px);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Header -->
+    <div class="perfil-header">
+      <div class="perfil-logo">
+        <span>CI</span>
+        <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,0 14,0 30,42 46,0 60,0 30,70" fill="#17b83c"/>
+          <line x1="30" y1="8"  x2="30" y2="18" stroke="white" stroke-width="4" stroke-linecap="round"/>
+          <line x1="30" y1="24" x2="30" y2="34" stroke="white" stroke-width="4" stroke-linecap="round"/>
+          <line x1="30" y1="40" x2="30" y2="50" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span>IAS</span>
+      </div>
+      <h1>Meu Perfil</h1>
+    </div>
+
+    <!-- Avatar e info -->
+    <div class="perfil-info">
+      <img
+        class="perfil-avatar"
+        src="https://api.dicebear.com/7.x/adventurer/svg?seed=civias"
+        alt="Avatar"
+      />
+      <div class="perfil-name" id="perfilNome">Pessoa de Teste</div>
+      <div class="perfil-city">Vila Velha - ES</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="perfil-stats">
+      <div class="stats-grid">
+
+        <div class="stat-card" style="border: 1px solid rgba(255,255,255,0.1);">
+          <div class="stat-label" style="color: var(--text-secondary);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Ruas reportadas
+          </div>
+          <div class="stat-number" style="color: var(--text-primary);">23</div>
+        </div>
+
+        <div class="stat-card orange">
+          <div class="stat-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Ocorrências
+          </div>
+          <div class="stat-number">3</div>
+        </div>
+
+        <div class="stat-card green">
+          <div class="stat-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Resolvidas
+          </div>
+          <div class="stat-number">1</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Minhas ocorrências -->
+    <div class="ocorrencias-section">
+      <h2>Minhas ocorrências</h2>
+
+      <!-- Item 1 -->
+      <div class="oc-item">
+        <div class="oc-item-icon">
+          <img src="https://api.dicebear.com/7.x/icons/svg?seed=map1&backgroundColor=1a1a1a" alt="mapa" />
+        </div>
+        <div class="oc-item-info">
+          <div class="oc-item-top">
+            <span class="oc-item-name">Av. Hugo Musso</span>
+            <span class="oc-item-badge resolvida">Resolvida</span>
+          </div>
+          <div class="oc-item-bottom">
+            <span class="oc-item-bairro">Itapuã</span>
+            <span class="oc-item-date">01/05/2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="oc-item">
+        <div class="oc-item-icon">
+          <img src="https://api.dicebear.com/7.x/icons/svg?seed=map2&backgroundColor=1a1a1a" alt="mapa" />
+        </div>
+        <div class="oc-item-info">
+          <div class="oc-item-top">
+            <span class="oc-item-name">Av. Champagnat</span>
+            <span class="oc-item-badge analise">Em análise</span>
+          </div>
+          <div class="oc-item-bottom">
+            <span class="oc-item-bairro">Praia da Costa</span>
+            <span class="oc-item-date">27/12/2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="oc-item">
+        <div class="oc-item-icon">
+          <img src="https://api.dicebear.com/7.x/icons/svg?seed=map3&backgroundColor=1a1a1a" alt="mapa" />
+        </div>
+        <div class="oc-item-info">
+          <div class="oc-item-top">
+            <span class="oc-item-name">Rod. do Sol</span>
+            <span class="oc-item-badge analise">Em análise</span>
+          </div>
+          <div class="oc-item-bottom">
+            <span class="oc-item-bairro">Parte Ponta da Fruta</span>
+            <span class="oc-item-date">12/10/2025</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bottom-space"></div>
+
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="home.html" title="Home">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="mapa.html" title="Mapa">
+      <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <a href="ocorrencia.html" title="Ocorrência">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </a>
+    <a href="perfil.html" class="active" title="Perfil">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </nav>
+
+  <script src="assets/js/perfil.js"></script>
+</body>
+</html>

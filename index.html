@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIVIAS</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      background-color: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .splash-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0px;
+    }
+
+    /* Texto CI e IAS ficam invisíveis no início */
+    .splash-ci,
+    .splash-ias {
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--text-primary);
+      opacity: 0;
+      letter-spacing: -1px;
+    }
+
+    /* O V começa pequeno e cresce */
+    .splash-v-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .splash-v-svg {
+      width: 0px;
+      height: 60px;
+      overflow: visible;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-logo">
+      <span class="splash-ci" id="splashCI">CI</span>
+
+      <div class="splash-v-wrapper">
+        <!-- Logo V com estrada pontilhada -->
+        <svg class="splash-v-svg" id="splashV" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sombra/corpo do V verde escuro -->
+          <polygon points="0,0 14,0 30,42 46,0 60,0 30,70" fill="#17b83c"/>
+          <!-- Faixa pontilhada central (estrada) -->
+          <line x1="30" y1="8"  x2="30" y2="18" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          <line x1="30" y1="24" x2="30" y2="34" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          <line x1="30" y1="40" x2="30" y2="50" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <span class="splash-ias" id="splashIAS">IAS</span>
+    </div>
+  </div>
+
+  <script src="assets/js/splash.js"></script>
+</body>
+</html>

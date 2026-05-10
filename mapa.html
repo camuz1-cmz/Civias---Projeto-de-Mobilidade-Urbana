@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIVIAS - Mapa do Bairro</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      background-color: var(--bg-primary);
+    }
+
+    /* Header */
+    .mapa-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 20px;
+      gap: 8px;
+    }
+
+    .mapa-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .mapa-logo span {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .mapa-logo svg {
+      width: 22px;
+      height: 28px;
+    }
+
+    .mapa-header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 12px;
+    }
+
+    /* Mapa */
+    .mapa-container {
+      margin: 0 20px;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      position: relative;
+      height: 420px;
+      background-color: var(--bg-card);
+    }
+
+    .mapa-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: brightness(0.75) saturate(0.6) hue-rotate(180deg);
+    }
+
+    /* Pins sobre o mapa */
+    .map-pins {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .map-pin {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .map-pin .pin-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      flex-shrink: 0;
+    }
+
+    .map-pin.red .pin-dot   { background-color: #e53e3e; }
+    .map-pin.green .pin-dot { background-color: var(--green-main); }
+
+    .map-pin .pin-tooltip {
+      background: white;
+      border-radius: var(--border-radius-md);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .pin-tooltip .dot-small {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .pin-tooltip .dot-small.red {
+      background-color: #e53e3e;
+      box-shadow: 0 0 0 3px rgba(229,62,62,0.2);
+    }
+
+    .pin-tooltip .dot-small.green {
+      background-color: var(--green-main);
+      box-shadow: 0 0 0 3px rgba(31,223,75,0.2);
+    }
+
+    .pin-tooltip .pin-info span {
+      display: block;
+      font-size: 11px;
+      color: #888;
+    }
+
+    .pin-tooltip .pin-info strong {
+      font-size: 13px;
+      color: #111;
+      font-weight: 700;
+    }
+
+    /* Rodapé */
+    .mapa-footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .bottom-space {
+      height: calc(var(--navbar-height) + 32px);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Header -->
+    <div class="mapa-header">
+      <div class="mapa-logo">
+        <span>CI</span>
+        <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,0 14,0 30,42 46,0 60,0 30,70" fill="#17b83c"/>
+          <line x1="30" y1="8"  x2="30" y2="18" stroke="white" stroke-width="4" stroke-linecap="round"/>
+          <line x1="30" y1="24" x2="30" y2="34" stroke="white" stroke-width="4" stroke-linecap="round"/>
+          <line x1="30" y1="40" x2="30" y2="50" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span>IAS</span>
+      </div>
+      <h1>Mapa do Bairro</h1>
+    </div>
+
+    <!-- Mapa -->
+    <div class="mapa-container">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-40.3150%2C-20.3400%2C-40.2900%2C-20.3200&layer=mapnik"
+        allowfullscreen
+        loading="lazy"
+        title="Mapa Vila Velha"
+      ></iframe>
+
+      <!-- Pins visuais -->
+      <div class="map-pins">
+
+        <!-- Pin vermelho com tooltip -->
+        <div class="map-pin red" style="top: 25%; left: 52%;">
+          <div class="pin-dot"></div>
+        </div>
+        <div class="map-pin red" style="top: 18%; left: 14%;">
+          <div class="pin-tooltip">
+            <div class="dot-small red"></div>
+            <div class="pin-info">
+              <span>Asfalto</span>
+              <strong>com buraco</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pin verde com tooltip -->
+        <div class="map-pin green" style="top: 60%; left: 20%;">
+          <div class="pin-dot"></div>
+        </div>
+        <div class="map-pin green" style="top: 66%; left: 28%;">
+          <div class="pin-tooltip">
+            <div class="dot-small green"></div>
+            <div class="pin-info">
+              <span>Revsol</span>
+              <strong>RENOVADO!</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="mapa-footer">
+      Reporte. Contribua com a comunidade.
+    </div>
+
+    <div class="bottom-space"></div>
+
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="home.html" title="Home">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="mapa.html" class="active" title="Mapa">
+      <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <a href="ocorrencia.html" title="Ocorrência">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </a>
+    <a href="perfil.html" title="Perfil">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </nav>
+
+  <script src="assets/js/mapa.js"></script>
+</body>
+</html>

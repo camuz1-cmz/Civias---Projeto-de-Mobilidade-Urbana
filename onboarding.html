@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIVIAS - Bem-vindo</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      background-color: var(--bg-primary);
+      overflow: hidden;
+    }
+
+    .onboarding-wrapper {
+      width: 100%;
+      max-width: 430px;
+      height: 100vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 48px 24px 40px;
+      position: relative;
+    }
+
+    /* Logo topo */
+    .ob-logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .ob-logo span {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .ob-logo svg {
+      width: 22px;
+      height: 28px;
+    }
+
+    /* Carrossel */
+    .ob-carousel {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .ob-slides-track {
+      width: 100%;
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .ob-slide {
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .ob-image-wrapper {
+      width: 100%;
+      max-width: 320px;
+      border-radius: var(--border-radius-xl);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background-color: var(--bg-card);
+    }
+
+    .ob-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ob-slide-text {
+      font-size: 22px;
+      font-weight: 800;
+      text-align: center;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    /* Indicadores de ponto */
+    .ob-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .ob-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--text-muted);
+      transition: background 0.3s, width 0.3s;
+    }
+
+    .ob-dot.active {
+      background-color: var(--green-main);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* Botão pular */
+    .ob-footer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-pular {
+      background: linear-gradient(135deg, var(--green-main), var(--green-dark));
+      color: #000;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--border-radius-lg);
+      padding: 14px 36px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .btn-pular:active {
+      transform: scale(0.97);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="onboarding-wrapper">
+
+    <!-- Logo -->
+    <div class="ob-logo">
+      <span>CI</span>
+      <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,0 14,0 30,42 46,0 60,0 30,70" fill="#17b83c"/>
+        <line x1="30" y1="8"  x2="30" y2="18" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <line x1="30" y1="24" x2="30" y2="34" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <line x1="30" y1="40" x2="30" y2="50" stroke="white" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span>IAS</span>
+    </div>
+
+    <!-- Carrossel -->
+    <div class="ob-carousel">
+      <div style="width:100%; overflow:hidden;" id="carouselContainer">
+        <div class="ob-slides-track" id="slidesTrack">
+
+          <!-- Slide 1 -->
+          <div class="ob-slide">
+            <div class="ob-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=600&q=80" alt="Rua com buraco" />
+            </div>
+            <p class="ob-slide-text">Registre problemas<br>urbanos.</p>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="ob-slide">
+            <div class="ob-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1573497491765-dccce02b29df?w=600&q=80" alt="Comunidade" />
+            </div>
+            <p class="ob-slide-text">Seja a voz da<br>sua comunidade.</p>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="ob-slide">
+            <div class="ob-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=600&q=80" alt="Cidade melhor" />
+            </div>
+            <p class="ob-slide-text">Juntos por uma cidade<br>melhor.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Pontos indicadores -->
+      <div class="ob-dots" id="obDots">
+        <div class="ob-dot active"></div>
+        <div class="ob-dot"></div>
+        <div class="ob-dot"></div>
+      </div>
+    </div>
+
+    <!-- Botão pular -->
+    <div class="ob-footer">
+      <button class="btn-pular" id="btnPular">Pular</button>
+    </div>
+
+  </div>
+
+  <script src="assets/js/onboarding.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+/* =============================
+   CIVIAS - Estilos Globais
+   ============================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Variáveis de cor */
+:root {
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #1a1a1a;
+  --bg-card: #1e1e1e;
+  --bg-card-alt: #2a2a2a;
+
+  --green-main: #1fdf4b;
+  --green-dark: #17b83c;
+  --green-glow: rgba(31, 223, 75, 0.15);
+
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #606060;
+
+  --red: #e53e3e;
+  --orange: #d97706;
+
+  --border-radius-sm: 10px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-xl: 32px;
+
+  --navbar-height: 72px;
+}
+
+/* Reset e base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #111;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* =============================
+   CONTAINER PRINCIPAL
+   ============================= */
+.app-container {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: var(--bg-primary);
+  position: relative;
+}
+
+/* Desktop: centraliza com sombra lateral */
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 440px;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* =============================
+   NAVBAR INFERIOR
+   ============================= */
+.navbar {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 408px;
+  height: var(--navbar-height);
+  background-color: var(--bg-card-alt);
+  border-radius: var(--border-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 16px;
+  z-index: 100;
+}
+
+/* Desktop: navbar acompanha o container */
+@media (min-width: 768px) {
+  .navbar {
+    max-width: 408px;
+  }
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  background-color: var(--green-glow);
+}
+
+.navbar svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--green-main);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* =============================
+   BOTÕES
+   ============================= */
+.btn-primary {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--green-main), var(--green-dark));
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-outline {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  color: var(--green-main);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1.5px solid var(--green-main);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--green-glow);
+}
+
+/* =============================
+   INPUTS
+   ============================= */
+.input-group {
+  background-color: #fff;
+  border-radius: var(--border-radius-md);
+  padding: 4px 16px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.input-row:last-child {
+  border-bottom: none;
+}
+
+.input-row svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--green-main);
+  fill: none;
+  stroke-width: 1.8;
+  flex-shrink: 0;
+}
+
+.input-row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  background: transparent;
+}
+
+.input-row input::placeholder {
+  color: #aaa;
+}
+
+.input-row .toggle-password {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.input-row .toggle-password svg {
+  stroke: #aaa;
+}
+
+/* =============================
+   CARDS DE ESTATÍSTICA
+   ============================= */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.stat-card {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-md);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-card .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-card .stat-number {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-card.red    { border: 1px solid rgba(229, 62, 62, 0.4); }
+.stat-card.orange { border: 1px solid rgba(217, 119, 6, 0.4); }
+.stat-card.green  { border: 1px solid rgba(31, 223, 75, 0.4); }
+
+.stat-card.red    .stat-label { color: var(--red); }
+.stat-card.orange .stat-label { color: var(--orange); }
+.stat-card.green  .stat-label { color: var(--green-main); }
+
+.stat-card.red    .stat-number { color: var(--red); }
+.stat-card.orange .stat-number { color: var(--orange); }
+.stat-card.green  .stat-number { color: var(--green-main); }
+
+/* =============================
+   UTILITÁRIOS
+   ============================= */
+.page-content {
+  padding: 24px 20px;
+  padding-bottom: calc(var(--navbar-height) + 32px);
+}
+
+.page-content-no-navbar {
+  padding: 24px 20px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+.text-green { color: var(--green-main); }
+.text-muted { color: var(--text-secondary); font-size: 14px; }
+
+.mt-8  { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+/* =============================
+   TELAS MUITO PEQUENAS
+   ============================= */
+@media (max-width: 360px) {
+  .stats-grid {
+    gap: 6px;
+  }
+
+  .stat-card .stat-number {
+    font-size: 28px;
+  }
+
+  .stat-card .stat-label {
+    font-size: 10px;
+  }
+}
