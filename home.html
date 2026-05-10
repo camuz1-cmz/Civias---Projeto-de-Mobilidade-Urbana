@@ -103,25 +103,11 @@
       opacity: 0.9;
     }
 
-    /* Mapa */
-    .map-section {
-      margin: 20px 20px 0;
-      border-radius: var(--border-radius-lg);
-      overflow: hidden;
-      position: relative;
-      height: 280px;
-      background-color: var(--bg-card);
-    }
-
-    .map-section iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      filter: brightness(0.75) saturate(0.6) hue-rotate(180deg);
-    }
-
-    /* Pins sobre o mapa */
-    
+  #map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
     /* Stats */
     .stats-section {
       margin: 20px 20px 0;
@@ -132,6 +118,9 @@
       height: calc(var(--navbar-height) + 32px);
     }
   </style>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  
 </head>
 <body>
   <div class="app-container">
@@ -168,45 +157,9 @@
     </div>
 
     <!-- Mapa -->
-    <div class="map-section">
-      <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-40.3150%2C-20.3400%2C-40.2900%2C-20.3200&layer=mapnik"
-        allowfullscreen
-        loading="lazy"
-        title="Mapa Vila Velha"
-      ></iframe>
+   <div id="map"></div>
 
-      <!-- Pins visuais -->
-      <div class="map-pins">
-        <!-- Pin vermelho -->
-        <div class="map-pin red" style="top: 28%; left: 52%;">
-          <div class="pin-dot"></div>
-        </div>
-        <div class="map-pin red" style="top: 22%; left: 18%;">
-          <div class="pin-tooltip">
-            <div class="dot-small red"></div>
-            <div class="pin-info">
-              <span>Asfalto</span>
-              <strong>com buraco</strong>
-            </div>
-          </div>
-        </div>
 
-        <!-- Pin verde -->
-        <div class="map-pin green" style="top: 62%; left: 22%;">
-          <div class="pin-dot"></div>
-        </div>
-        <div class="map-pin green" style="top: 68%; left: 30%;">
-          <div class="pin-tooltip">
-            <div class="dot-small green"></div>
-            <div class="pin-info">
-              <span>Revsol</span>
-              <strong>RENOVADO!</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Stats -->
     <div class="stats-section">
@@ -264,6 +217,7 @@
     </a>
   </nav>
 
-  <script src="assets/js/home.js"></script>
+<script src="assets/js/home.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 </html>
