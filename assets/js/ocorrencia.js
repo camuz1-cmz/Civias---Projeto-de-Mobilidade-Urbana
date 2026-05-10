@@ -1,5 +1,5 @@
 // ocorrencia.js — Lógica da tela de Registro de Ocorrência
-import { db } from "./firebase.js";
+import { db } from "./assets/js/firebase.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", () => {
