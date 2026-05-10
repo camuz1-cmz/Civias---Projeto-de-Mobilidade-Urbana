@@ -16,7 +16,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 24px 20px 0;
+      padding: clamp(16px, 4vh, 24px) clamp(14px, 4vw, 20px) 0;
     }
 
     .oc-logo {
@@ -25,15 +25,15 @@
     }
 
     .oc-logo span {
-      font-size: 24px;
+      font-size: clamp(19px, 4.5vw, 24px);
       font-weight: 800;
       color: var(--text-primary);
       letter-spacing: -0.5px;
     }
 
     .oc-logo svg {
-      width: 20px;
-      height: 26px;
+      width: clamp(16px, 3.5vw, 20px);
+      height: clamp(20px, 4.5vw, 26px);
     }
 
     .oc-header-user {
@@ -44,7 +44,7 @@
 
     .oc-header-user .greet {
       text-align: right;
-      font-size: 13px;
+      font-size: clamp(11px, 3vw, 13px);
       color: var(--text-secondary);
       line-height: 1.3;
     }
@@ -56,8 +56,8 @@
     }
 
     .avatar {
-      width: 44px;
-      height: 44px;
+      width: clamp(36px, 9vw, 44px);
+      height: clamp(36px, 9vw, 44px);
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--green-main);
@@ -65,21 +65,21 @@
 
     /* Título da página */
     .oc-page-title {
-      font-size: 26px;
+      font-size: clamp(20px, 5vw, 26px);
       font-weight: 800;
       color: var(--text-primary);
-      padding: 16px 20px 0;
+      padding: clamp(12px, 2.5vh, 16px) clamp(14px, 4vw, 20px) 0;
     }
 
     /* Card do formulário */
     .oc-card {
-      margin: 16px 20px 0;
+      margin: clamp(12px, 2.5vh, 16px) clamp(14px, 4vw, 20px) 0;
       background-color: var(--bg-card);
       border-radius: var(--border-radius-lg);
-      padding: 20px;
+      padding: clamp(16px, 3vh, 20px);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: clamp(16px, 3vh, 20px);
     }
 
     /* Seção */
@@ -90,20 +90,22 @@
       margin-bottom: 10px;
     }
 
-    /* Mapa de localização */
+    /* Mapa de localização — NÃO mexemos na lógica, só no container visual */
     .oc-map-wrapper {
       border-radius: var(--border-radius-md);
       overflow: hidden;
-      height: 160px;
+      height: clamp(140px, 25vh, 180px);
       position: relative;
       background-color: var(--bg-card-alt);
     }
 
+    /* IMPORTANTE: mantemos width/height 100% e min-height
+       para o Leaflet renderizar corretamente */
     #map {
-  width: 100%;
-  height: 100%;
-  min-height: 160px;
-}
+      width: 100%;
+      height: 100%;
+      min-height: clamp(140px, 25vh, 180px);
+    }
 
     .oc-address {
       margin-top: 10px;
@@ -125,7 +127,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 20px 12px;
+      padding: clamp(14px, 3vh, 20px) 12px;
       border: 1.5px dashed var(--green-main);
       border-radius: var(--border-radius-md);
       background: transparent;
@@ -149,7 +151,6 @@
       stroke-width: 1.8;
     }
 
-    /* Input file oculto */
     .oc-upload-btn input[type="file"] {
       display: none;
     }
@@ -170,11 +171,17 @@
       border: 1.5px solid var(--green-main);
     }
 
-    /* Tipos de veículos */
+    /* Tipos de veículos — em telas muito pequenas reduz de 4 p/ 2 colunas */
     .oc-vehicles {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
+    }
+
+    @media (max-width: 340px) {
+      .oc-vehicles {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .oc-vehicle-btn {
@@ -182,7 +189,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 14px 6px;
+      padding: clamp(10px, 2vh, 14px) 6px;
       border: 1.5px dashed var(--text-muted);
       border-radius: var(--border-radius-md);
       background: transparent;
@@ -192,8 +199,8 @@
     }
 
     .oc-vehicle-btn svg {
-      width: 30px;
-      height: 30px;
+      width: clamp(24px, 5vw, 30px);
+      height: clamp(24px, 5vw, 30px);
       stroke: var(--text-secondary);
       fill: none;
       stroke-width: 1.6;
@@ -233,10 +240,16 @@
       color: var(--text-muted);
     }
 
-    /* Severidade */
+    /* Severidade — em telas muito pequenas empilha */
     .oc-severity {
       display: flex;
       gap: 10px;
+    }
+
+    @media (max-width: 320px) {
+      .oc-severity {
+        flex-direction: column;
+      }
     }
 
     .oc-sev-btn {
@@ -245,39 +258,20 @@
       border-radius: var(--border-radius-md);
       border: 1.5px solid transparent;
       background: transparent;
-      font-size: 14px;
+      font-size: clamp(13px, 3.5vw, 14px);
       font-weight: 600;
       cursor: pointer;
       font-family: 'Inter', sans-serif;
       transition: background 0.2s, border-color 0.2s;
     }
 
-    .oc-sev-btn.baixo {
-      border-color: var(--green-main);
-      color: var(--green-main);
-    }
+    .oc-sev-btn.baixo   { border-color: var(--green-main); color: var(--green-main); }
+    .oc-sev-btn.medio   { border-color: var(--orange);     color: var(--orange);     }
+    .oc-sev-btn.critico { border-color: var(--red);        color: var(--red);        }
 
-    .oc-sev-btn.medio {
-      border-color: var(--orange);
-      color: var(--orange);
-    }
-
-    .oc-sev-btn.critico {
-      border-color: var(--red);
-      color: var(--red);
-    }
-
-    .oc-sev-btn.baixo.selected {
-      background: rgba(31, 223, 75, 0.15);
-    }
-
-    .oc-sev-btn.medio.selected {
-      background: rgba(217, 119, 6, 0.15);
-    }
-
-    .oc-sev-btn.critico.selected {
-      background: rgba(229, 62, 62, 0.15);
-    }
+    .oc-sev-btn.baixo.selected   { background: rgba(31, 223, 75, 0.15); }
+    .oc-sev-btn.medio.selected   { background: rgba(217, 119, 6, 0.15); }
+    .oc-sev-btn.critico.selected { background: rgba(229, 62, 62, 0.15); }
 
     .bottom-space {
       height: calc(var(--navbar-height) + 32px);
@@ -321,11 +315,12 @@
       <div>
         <div class="oc-section-title">Localização</div>
         <div class="oc-map-wrapper">
-         <div id="map"></div>
+          <div id="map"></div>
         </div>
-         <div class="oc-address" id="ocAddress">
-    Selecione um ponto no mapa
-    </div>
+        <div class="oc-address" id="ocAddress">
+          Selecione um ponto no mapa
+        </div>
+      </div>
 
       <!-- Upload -->
       <div>
