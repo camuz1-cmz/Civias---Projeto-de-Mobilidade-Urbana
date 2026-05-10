@@ -59,11 +59,9 @@ body {
    ============================= */
 .app-container {
   width: 100%;
-  max-width: 430px;
   min-height: 100vh;
   margin: 0 auto;
-  background-color: var(--bg-primary);
-  position: relative;
+  padding: 0 24px;
 }
 
 /* Desktop: centraliza com sombra lateral */
@@ -507,5 +505,86 @@ body {
   .btn-outline {
     padding: 14px;
     font-size: 14px;
+  }
+}
+/* =========================
+   RESPONSIVIDADE GLOBAL
+========================= */
+
+/* Desktop */
+@media (min-width: 1024px) {
+
+  .app-container {
+    max-width: 1400px;
+    padding: 0 48px;
+  }
+
+  .home-grid,
+  .dashboard-grid,
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .mapa-container {
+    height: 650px !important;
+  }
+
+  .navbar {
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 18px;
+  }
+
+  .home-header,
+  .perfil-header,
+  .mapa-header,
+  .oc-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .app-container {
+    max-width: 900px;
+    padding: 0 32px;
+  }
+
+  .mapa-container {
+    height: 500px !important;
+  }
+
+  .navbar {
+    max-width: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+  .app-container {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .mapa-container {
+    height: 320px !important;
+  }
+
+  .home-header,
+  .perfil-header,
+  .mapa-header,
+  .oc-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
