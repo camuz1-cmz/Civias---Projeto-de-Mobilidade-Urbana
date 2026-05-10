@@ -23,70 +23,55 @@ document.addEventListener("DOMContentLoaded", () => {
    // ==============================
   // ELEMENTOS DO MAPA
   // ==============================
-  const mapElement = document.getElementById('map');
-  const addressElement = document.getElementById('ocAddress');
+ const mapElement = document.getElementById('map');
+const addressElement = document.getElementById('ocAddress');
 
-  let marker = null;
-  let map = null;
+let map, marker;
 
-  if (mapElement && typeof L !== "undefined") {
+if (mapElement) {
 
-    map = L.map('map').setView([-20.3155, -40.3128], 15);
+  map = L.map('map').setView([-20.3155, -40.3128], 15);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
 
-    marker = L.marker([-20.3155, -40.3128], {
-      draggable: true
-    }).addTo(map);
+  marker = L.marker([-20.3155, -40.3128], { draggable: true }).addTo(map);
 
-    // 🔥 IMPORTANTE: força render correto
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 200);
+  setTimeout(() => map.invalidateSize(), 300);
 
-    async function atualizarEndereco(lat, lng) {
+  async function atualizarEndereco(lat, lng) {
+    if (!addressElement) return;
 
-      if (!addressElement) return;
+    addressElement.textContent = 'Buscando endereço...';
 
-      addressElement.textContent = 'Buscando endereço...';
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+      );
 
-      try {
-        const response = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
-        );
+      const data = await res.json();
+      addressElement.textContent = data.display_name || 'Endereço não encontrado';
 
-        const data = await response.json();
-
-        addressElement.textContent =
-          data.display_name || 'Endereço não encontrado';
-
-      } catch (err) {
-        console.error(err);
-        addressElement.textContent =
-          'Não foi possível obter o endereço';
-      }
+    } catch {
+      addressElement.textContent = 'Erro ao buscar endereço';
     }
-
-    atualizarEndereco(-20.3155, -40.3128);
-
-    map.on('click', (e) => {
-      const { lat, lng } = e.latlng;
-      marker.setLatLng([lat, lng]);
-      atualizarEndereco(lat, lng);
-    });
-
-    marker.on('dragend', () => {
-      const pos = marker.getLatLng();
-      atualizarEndereco(pos.lat, pos.lng);
-    });
   }
 
+  atualizarEndereco(-20.3155, -40.3128);
 
+  map.on('click', (e) => {
+    marker.setLatLng(e.latlng);
+    atualizarEndereco(e.latlng.lat, e.latlng.lng);
+  });
+
+  marker.on('dragend', () => {
+    const pos = marker.getLatLng();
+    atualizarEndereco(pos.lat, pos.lng);
+  });
+}
   
-
 
 // --- Seleção de veículos ---
 const vehicleBtns = document.querySelectorAll('.oc-vehicle-btn');
