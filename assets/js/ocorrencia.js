@@ -40,7 +40,7 @@ if (mapElement) {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap'
   }).addTo(map);
-
+}
   marker = L.marker([-20.3155, -40.3128], { draggable: true }).addTo(map);
 
   setTimeout(() => map.invalidateSize(), 300);
