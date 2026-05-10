@@ -157,5 +157,3 @@ document.getElementById('btnEnviar').addEventListener('click', async () => {
     alert("Erro ao salvar");
   }
 });
-
-});
